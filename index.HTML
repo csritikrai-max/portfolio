@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&family=Playwrite+HR+Lijeva+Guides&family=Roboto:ital,wght@0,100..900;1,100..900&family=Satisfy&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<!-- AOS Animation -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+</head>
+<body >
+<section class="h" id="home">
+    <div data-aos="fade-up" class = "nav1">
+        <nav class="nav2">
+            <img src="asset/images.jpg" alt="logo" height="200" width="200">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>  
+        </nav>
+        <div>
+          <div class="intro">
+              <div class="cont-left"><h2 class="typing"></h2></div>
+                
+                <h1>Hello, I'm <span>Ritik</span></h1>
+                <p>Welcome to my portfolio!
+                    I’m a BSc Computer Science <br> student passionate about building innovative solutions using<br>  technology.Explore my         projects, including my AI assistant <br>Raghav 2.0, and get to know my journey in software development. </p>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <div class="center-img">
+                <img src="asset/center_logo2.jpeg" alt="center">
+            </div>
+        </div>
+</section>
+<section class="about" id="about">
+  <div class="content1">
+    <h2>About Me:-</h2>
+    <p>I am a dedicated BSc Computer Science student with a strong passion for technology, software development, and artificial intelligence. I enjoy turning ideas into real-world applications and continuously improving my technical skills.
+      
+      I have worked on projects like Raghav 2.0, an AI-powered virtual assistant inspired by systems such as Google Assistant and Alexa. Built using Python, this project can understand voice commands, perform tasks, and automate basic operations, showcasing my interest in AI and smart technologies.
+      
+      I have a solid foundation in Python, HTML, CSS, and JavaScript, along with a basic understanding of APIs and databases. I am currently exploring full-stack development and aiming to build scalable and user-friendly applications.
+      
+      I am highly motivated to learn, grow, and contribute to innovative projects. I am actively looking for opportunities where I can apply my skills, gain industry experience, and become a better developer.</p>
+    </div>
+<!-- Resume download -->
+    <div class="resume">
+    <a href="asset/ResumeFinal.pdf"download class="btn">📄 Download Resume</a>
+    </div>
+</section>
+ <section class="contact" id="contact">
+  <h2>Contact Me</h2>
+
+  
+  <aside class="contact-details">
+    <p><i class="fa-regular fa-envelope"></i> cs.ritikrai@gmail.com</p>
+    <p><i class="fa-solid fa-phone"></i> +91 7021491503 </p>
+    <p><i class="fa-solid fa-location-dot"></i> Mumbai, India</p>
+
+    <div class="links">
+      <a href="https://github.com/csritikrai-max" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://www.linkedin.com/in/ritik-rai-6885ab3a0" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="https://twitter.com/ritiktai" target="_blank"><i class="fa-brands fa-twitter"></i> Twitter</a>
+    </div>
+  </aside>
+
+  <form class="contact-form" id="contactForm">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required placeholder="Your name" />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="_replyto" required placeholder="Your email" />
+
+    <label for="inquiry">Type of Inquiry</label>
+    <select id="inquiry" name="inquiry" required>
+      <option value="">-- Please choose an option --</option>
+      <option value="project">Project Inquiry</option>
+      <option value="collab">Collaboration</option>
+      <option value="feedback">Feedback</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+  <script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    inquiry: document.getElementById("inquiry").value,
+    message: document.getElementById("message").value,
+  };
+
+  const response = await fetch("http://127.0.0.1:5000/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const result = await response.json();
+  alert(result.message);
+});
+</script>
+</section>
+<!-- SCRIPTS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+<!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    new Typed(".typing", {
+      strings: ["AI Developer", "Full Stack Developer"],
+      typeSpeed: 60,
+      backSpeed: 40,
+      backDelay: 1500,
+      loop: true,
+      showCursor: true,
+      cursorChar: "|"
+    });
+  </script>
+
+</body>
+</html>
+</body>
+</html>
