@@ -54,7 +54,7 @@ portfolio/
 ---
 ## 📸 Screenshots
 
-(Add screenshots of your portfolio here)
+pending
 
 ---
 
