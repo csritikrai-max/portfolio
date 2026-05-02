@@ -310,3 +310,151 @@
   }
 }
 
+/* ================= MOBILE (≤ 768px) ================= */
+@media (max-width: 768px) {
+
+  .nav1 {
+    width: 100%;
+    padding: 10px 20px;
+    height: auto;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+  }
+
+  nav img {
+    height: 70px;
+    width: 70px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .intro {
+    padding-top: 100px;
+    text-align: center;
+  }
+
+  .intro h1 {
+    font-size: 32px;
+  }
+
+  .intro p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .center-img {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .center-img img {
+    width: 200px;
+    height: auto;
+  }
+
+  .social-icons {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .about,
+  .contact {
+    height: auto;
+    padding: 60px 20px;
+  }
+
+  .content1 h2,
+  .content1 p {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .content1 p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .contact {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .contact-details,
+  .contact-form {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ================= TABLET (769px - 1024px) ================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .nav1 {
+    width: 100%;
+    padding: 0 30px;
+  }
+
+  .intro {
+    padding-top: 180px;
+    text-align: center;
+  }
+
+  .intro h1 {
+    font-size: 48px;
+  }
+
+  .intro p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .center-img {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .center-img img {
+    width: 300px;
+    height: auto;
+  }
+
+  .about,
+  .contact {
+    height: auto;
+    padding: 80px 40px;
+  }
+
+  .content1 h2,
+  .content1 p {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .content1 p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .contact {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-details,
+  .contact-form {
+    max-width: 600px;
+    width: 100%;
+  }
+}
