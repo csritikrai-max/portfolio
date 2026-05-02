@@ -311,38 +311,43 @@
 }
 
 /* ================= MOBILE (≤ 768px) ================= */
+/* ===== FORCE MOBILE FIX ===== */
 @media (max-width: 768px) {
 
+  /* REMOVE HEIGHT RESTRICTIONS */
+  .h,
+  .about,
+  .contact {
+    height: auto !important;
+    min-height:unset;
+  }
+
+  /* NAVBAR */
   .nav1 {
     width: 100%;
-    padding: 10px 20px;
-    height: auto;
+    padding: 10px;
   }
 
   nav {
     flex-direction: column;
+    align-items: center;
     gap: 10px;
-    padding-top: 20px;
-  }
-
-  nav img {
-    height: 70px;
-    width: 70px;
   }
 
   .nav-links {
     flex-direction: column;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
   }
 
+  /* INTRO */
   .intro {
-    padding-top: 100px;
+    padding-top: 60px !important;
     text-align: center;
   }
 
   .intro h1 {
-    font-size: 32px;
+    font-size: 28px !important;
   }
 
   .intro p {
@@ -350,43 +355,41 @@
     line-height: 1.5;
   }
 
+  /* FIX IMAGE OVERLAP */
   .center-img {
-    position: static;
-    transform: none;
+    position: static !important;
+    transform: none !important;
+    margin-top: 20px;
     text-align: center;
-    margin-top: 30px;
   }
 
   .center-img img {
-    width: 200px;
+    width: 180px;
     height: auto;
   }
 
+  /* SOCIAL ICONS */
   .social-icons {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
   }
 
-  .about,
-  .contact {
-    height: auto;
-    padding: 60px 20px;
-  }
-
+  /* ABOUT */
   .content1 h2,
   .content1 p {
-    padding-left: 0;
+    padding: 0 10px !important;
     text-align: center;
   }
 
   .content1 p {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.6;
   }
 
+  /* CONTACT */
   .contact {
     flex-direction: column;
-    gap: 30px;
+    padding: 40px 15px !important;
   }
 
   .contact-details,
@@ -394,8 +397,13 @@
     width: 100%;
     max-width: 100%;
   }
-}
 
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select {
+    width: 100%;
+  }
+}
 /* ================= TABLET (769px - 1024px) ================= */
 @media (min-width: 769px) and (max-width: 1024px) {
 
