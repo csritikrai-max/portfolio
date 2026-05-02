@@ -92,6 +92,78 @@ def get_all():
     except Exception as e:
         print("Error:", e)
         return jsonify({"message": "Error fetching data"}), 500
+    
+@app.route('/dashboard')
+def dashboard():
+    conn = sqlite3.connect('contact.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM contacts")
+    data = cursor.fetchall()
+    conn.close()
+
+    html = """
+    <html>
+    <head>
+        <title>Contact Dashboard</title>
+        <style>
+            body {
+                font-family: Arial;
+                background: #111;
+                color: white;
+                padding: 20px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                padding: 12px;
+                border: 1px solid #444;
+                text-align: left;
+            }
+            th {
+                background: #00ff99;
+                color: black;
+            }
+            tr:nth-child(even) {
+                background: #1a1a1a;
+            }
+            h1 {
+                color: #00ff99;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>📊 Contact Form Data</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Inquiry</th>
+                <th>Message</th>
+            </tr>
+    """
+
+    for row in data:
+        html += f"""
+        <tr>
+            <td>{row[0]}</td>
+            <td>{row[1]}</td>
+            <td>{row[2]}</td>
+            <td>{row[3]}</td>
+            <td>{row[4]}</td>
+        </tr>
+        """
+
+    html += """
+        </table>
+    </body>
+    </html>
+    """
+
+    return html
 
 
 # ✅ Run app (for local)
