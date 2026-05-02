@@ -124,7 +124,7 @@ def dashboard():
             }
             th {
                 background: #00ff99;
-                color: black;
+                color: white;
             }
             tr:nth-child(even) {
                 background: #1a1a1a;
