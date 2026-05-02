@@ -111,7 +111,7 @@ document.getElementById("contactForm").addEventListener("submit", async function
     message: document.getElementById("message").value,
   };
 
-  const response = await fetch("http://127.0.0.1:5000/contact", {
+  const response = await fetch("https://portfolio-ivb9.onrender.com/contact", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
