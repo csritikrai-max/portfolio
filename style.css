@@ -312,14 +312,15 @@
 
 /* ================= MOBILE (≤ 768px) ================= */
 /* ================= MOBILE COMPLETE FIX ================= */
+/* ================= MOBILE FULL FIX ================= */
 @media (max-width: 768px) {
 
-  /* RESET SECTIONS */
+  /* REMOVE HEIGHT ISSUES */
   .h,
   .about,
   .contact {
     height: auto !important;
-    min-height: 100vh;
+    min-height: unset;
     padding: 40px 15px;
   }
 
@@ -348,7 +349,7 @@
     gap: 10px;
   }
 
-  /* INTRO SECTION */
+  /* INTRO */
   .intro {
     padding-top: 60px !important;
     text-align: center;
@@ -363,7 +364,7 @@
     line-height: 1.6;
   }
 
-  /* FIX IMAGE */
+  /* 🔥 IMAGE FIX (IMPORTANT) */
   .center-img {
     position: static !important;
     transform: none !important;
@@ -372,9 +373,10 @@
   }
 
   .center-img img {
-    width: 80%;
-    max-width: 220px;
-    height: auto;
+    width: 80% !important;
+    max-width: 200px;
+    height: auto !important;
+    object-fit: contain;
     border-radius: 50%;
   }
 
@@ -385,25 +387,25 @@
   }
 
   .social-icons a {
-    font-size: 24px;
-    margin: 0 10px;
+    font-size: 22px;
+    margin: 0 8px;
   }
 
-  /* ABOUT SECTION */
+  /* ABOUT */
   .content1 h2 {
-    padding: 0;
+    padding: 0 !important;
     text-align: center;
     font-size: 24px;
   }
 
   .content1 p {
-    padding: 10px;
+    padding: 10px !important;
     text-align: center;
     font-size: 15px;
     line-height: 1.6;
   }
 
-  /* RESUME BUTTON */
+  /* BUTTON */
   .resume {
     text-align: center;
   }
@@ -413,10 +415,11 @@
     padding: 10px 15px;
   }
 
-  /* CONTACT SECTION */
+  /* CONTACT */
   .contact {
     flex-direction: column;
     gap: 25px;
+    padding: 40px 15px !important;
   }
 
   .contact-details,
@@ -455,7 +458,6 @@
     padding: 10px;
   }
 }
-
 /* ================= TABLET (769px - 1024px) ================= */
 @media (min-width: 769px) and (max-width: 1024px) {
 
