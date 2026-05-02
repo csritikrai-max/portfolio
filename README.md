@@ -3,6 +3,8 @@
 Welcome to my personal portfolio website!
 This project showcases my skills, projects, and journey as a Computer Science student passionate about building real-world applications.
 
+project live link:- https://csritikrai-max.github.io/portfolio/
+
 ---
 
 ## 🚀 Features
