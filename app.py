@@ -1,33 +1,38 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import sqlite3
+import psycopg2
 import os
 
 app = Flask(__name__)
 CORS(app)
 
-# ✅ Database path (safe for Render)
-DB_PATH = os.path.join(os.getcwd(), 'contact.db')
+# 🔑 Get DB URL from Render
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
-# ✅ Create database and table
+def get_conn():
+    return psycopg2.connect(DATABASE_URL)
+
+# ✅ Create table
 def init_db():
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_conn()
     cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS contacts (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            email TEXT,
-            inquiry TEXT,
-            message TEXT
-        )
-    ''')
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS contacts (
+        id SERIAL PRIMARY KEY,
+        name TEXT,
+        email TEXT,
+        inquiry TEXT,
+        message TEXT
+    )
+    """)
+
     conn.commit()
     conn.close()
 
 init_db()
 
-# ✅ Home route (to check server is running)
+# ✅ Home route
 @app.route('/')
 def home():
     return "Backend is running 🚀"
@@ -37,7 +42,6 @@ def home():
 def contact():
     try:
         data = request.get_json()
-        print("Received data:", data)  # 🔥 debug log
 
         if not data:
             return jsonify({"message": "No data received"}), 400
@@ -50,12 +54,13 @@ def contact():
         if not name or not email or not message:
             return jsonify({"message": "Missing required fields"}), 400
 
-        conn = sqlite3.connect(DB_PATH)
+        conn = get_conn()
         cursor = conn.cursor()
-        cursor.execute('''
-            INSERT INTO contacts (name, email, inquiry, message)
-            VALUES (?, ?, ?, ?)
-        ''', (name, email, inquiry, message))
+
+        cursor.execute("""
+        INSERT INTO contacts (name, email, inquiry, message)
+        VALUES (%s, %s, %s, %s)
+        """, (name, email, inquiry, message))
 
         conn.commit()
         conn.close()
@@ -66,17 +71,18 @@ def contact():
         print("Error:", e)
         return jsonify({"message": "Server error"}), 500
 
-# ✅ NEW: View all stored data in browser
+
+# ✅ Get all data (JSON)
 @app.route('/all', methods=['GET'])
 def get_all():
     try:
-        conn = sqlite3.connect(DB_PATH)
+        conn = get_conn()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM contacts")
+
+        cursor.execute("SELECT * FROM contacts ORDER BY id DESC")
         rows = cursor.fetchall()
         conn.close()
 
-        # Convert to readable JSON
         data = []
         for row in rows:
             data.append({
@@ -92,19 +98,22 @@ def get_all():
     except Exception as e:
         print("Error:", e)
         return jsonify({"message": "Error fetching data"}), 500
-    
+
+
+# ✅ Dashboard (HTML table)
 @app.route('/dashboard')
 def dashboard():
-    conn = sqlite3.connect('contact.db')
+    conn = get_conn()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM contacts")
+
+    cursor.execute("SELECT * FROM contacts ORDER BY id DESC")
     data = cursor.fetchall()
     conn.close()
 
     html = """
     <html>
     <head>
-        <title>Contact Dashboard</title>
+        <title>Dashboard</title>
         <style>
             body {
                 font-family: Arial;
@@ -120,17 +129,13 @@ def dashboard():
             th, td {
                 padding: 12px;
                 border: 1px solid #444;
-                text-align: left;
             }
             th {
                 background: #00ff99;
-                color: white;
+                color: black;
             }
             tr:nth-child(even) {
                 background: #1a1a1a;
-            }
-            h1 {
-                color: #00ff99;
             }
         </style>
     </head>
@@ -165,7 +170,8 @@ def dashboard():
 
     return html
 
-# ✅ Run app (for local)
+
+# ✅ Run server
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
